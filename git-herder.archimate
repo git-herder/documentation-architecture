@@ -91,6 +91,10 @@
 Все пакеты, которым нужны параметры запуска или профиль, получают эти сведения из Invocation</documentation>
       </element>
       <element xsi:type="archimate:ApplicationComponent" name="ScmHttpTransport" id="id-d3767603ee2144b4a6e3b345d3f35c81"/>
+      <element xsi:type="archimate:ApplicationComponent" name="GitCliRunner" id="id-df00f6aad5a24ace847566d69059171b">
+        <documentation>- Собирает командную строку для запуска git&#xD;
+- Создает и запускает подпроцесс, выполняющий команду git</documentation>
+      </element>
     </folder>
     <folder name="Domain" id="id-9e3eaedfb79b451885dcd7196d78a0f9">
       <folder name="SCM" id="id-26f663d183ce46fba797b1c2e77d40a6">
@@ -157,10 +161,6 @@
 </documentation>
         </element>
       </folder>
-      <element xsi:type="archimate:ApplicationComponent" name="GitCliRunner" id="id-df00f6aad5a24ace847566d69059171b">
-        <documentation>- Собирает командную строку для запуска git&#xD;
-- Создает и запускает подпроцесс, выполняющий команду git</documentation>
-      </element>
     </folder>
     <element xsi:type="archimate:ApplicationComponent" name="Bootstrap" id="id-275db7f38336496e925e400fa76a19e1">
       <documentation>Точка входа: main передаёт argv в bootstrap.Run.&#xD;
@@ -187,6 +187,10 @@
     <element xsi:type="archimate:SystemSoftware" name="log/slog + slog-multi" id="id-c2a6e965e43748c586a596499bebf616"/>
     <element xsi:type="archimate:SystemSoftware" name="net/http" id="id-768d2f4da7ce4da79682460a03a08ef5"/>
     <element xsi:type="archimate:SystemSoftware" name="pterm" id="id-cae0d7c0c1c44732b996e552bdb691e1"/>
+    <element xsi:type="archimate:SystemSoftware" name="git CLI" id="id-311296fc662c47709bce3db2c4ee9602">
+      <documentation>Утилита GIT, установленная на машине пользователя.&#xD;
+Git Herder полезен и вообще нужен тем и только тем пользователям, у которых git на машине гарантированно уже установлен, по этому нет смысла включать в приложение какой-либо отдельный код для работы с git на машине.</documentation>
+    </element>
   </folder>
   <folder name="Motivation" id="id-b8ec53d2f8d0470cb688260f8126c98d" type="motivation"/>
   <folder name="Implementation &amp; Migration" id="id-e9e145c5d898484795c353b304908d33" type="implementation_migration"/>
@@ -342,6 +346,9 @@
     <element xsi:type="archimate:TriggeringRelationship" id="id-c218c6af339141cd99a54d718f3bfaa0" source="id-3bb2ab8583664ceb83f27935b1bd88fb" target="id-312b80f5996e4d96ac9a3e539b9c978d"/>
     <element xsi:type="archimate:ServingRelationship" name="Предоставляет реализацию ScmListingBuilder" id="id-f4ca7c429d434f87881976befdbf6558" source="id-6b8d93faeeb64568a4524f98cd035659" target="id-a52e7dbaf3af457380958ef42edf5862"/>
     <element xsi:type="archimate:TriggeringRelationship" id="id-904462aea9b141929e48c3d0c417c16d" source="id-336911d9ca73438f806f02eae9bb07d4" target="id-b64fd818686f44718ffe5c818be6bd2d"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-d0b5d685f73d43839383f8138bda3529" source="id-311296fc662c47709bce3db2c4ee9602" target="id-df00f6aad5a24ace847566d69059171b">
+      <documentation>runner запускает подпроцессы ОС, в которых выполняется git CLI</documentation>
+    </element>
   </folder>
   <folder name="Views" id="id-b90a7accf6a14cbabaeecbf23812c0ad" type="diagrams">
     <folder name="Command flows" id="id-2e7767d897ca4aa4ba794c5dac660493">
@@ -488,6 +495,7 @@
             <bendpoint startX="-601" startY="-102" endX="54" endY="267"/>
           </sourceConnection>
         </child>
+        <documentation>Переиспользуемый процесс загрузки и обогащения карточек из SCM. Используется всеми командами, которые требуют карточек репозиториев.</documentation>
       </element>
       <element xsi:type="archimate:ArchimateDiagramModel" name="Profile command flow" id="id-6f74e771c3ab4b2db677bcb6568cc5ed">
         <child xsi:type="archimate:DiagramObject" id="id-ca0aaf7794cc48e292f43ad7e97bd9ab" archimateElement="id-263d0dab4d314ac29f5608862c15b052">
@@ -724,8 +732,8 @@ Factory на основнии значения upstream создаёт один 
         <child xsi:type="archimate:DiagramObject" id="id-f509dabf1f36448a8c857cc9407ac12e" targetConnections="id-9e40331c70034bacb040228716dd0c19" archimateElement="id-6b8d93faeeb64568a4524f98cd035659">
           <bounds x="228" y="244" width="163" height="55"/>
         </child>
-        <child xsi:type="archimate:DiagramObject" id="id-57b0f2ccc2e8419f89ed00b2dc933caf" targetConnections="id-8dbe63f316264c83a73cf5b50889f0b4" archimateElement="id-df00f6aad5a24ace847566d69059171b">
-          <bounds x="420" y="244" width="163" height="55"/>
+        <child xsi:type="archimate:DiagramObject" id="id-57b0f2ccc2e8419f89ed00b2dc933caf" targetConnections="id-8dbe63f316264c83a73cf5b50889f0b4 id-aca627ed18b440b1ad5fc7642ebd36a5" archimateElement="id-df00f6aad5a24ace847566d69059171b">
+          <bounds x="612" y="336" width="163" height="55"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-9a2f473c122c452cb43f700498a256ec" targetConnections="id-99626f257fd049d7bc671f9eea510d76 id-d163b48a966747ffa9988d39038d9034" archimateElement="id-aee031091f904400a45f5634fcb7ef04">
           <bounds x="36" y="344" width="163" height="55"/>
@@ -734,7 +742,7 @@ Factory на основнии значения upstream создаёт один 
           <bounds x="612" y="144" width="163" height="55"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-de336218b2034c2c9b01cc7a6f294731" targetConnections="id-0b358fe23a794977a256c12a0f03ae4b" archimateElement="id-e46eecf780ba4ab78bc3de0d598f0bea">
-          <bounds x="612" y="44" width="163" height="55"/>
+          <bounds x="420" y="240" width="163" height="55"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-14489d6ea3394103bcc472cf9d48d925" targetConnections="id-de6e497762cc4516a0e081dbc97f8eb3 id-de99222e76fd446abd677f5d81a3b2a4" archimateElement="id-d3767603ee2144b4a6e3b345d3f35c81">
           <bounds x="420" y="336" width="163" height="55"/>
@@ -803,6 +811,10 @@ Factory на основнии значения upstream создаёт один 
       <child xsi:type="archimate:DiagramObject" id="id-d2fe4f9238874c17ba0056598c7515b2" archimateElement="id-768d2f4da7ce4da79682460a03a08ef5">
         <bounds x="1248" y="744" width="169" height="55"/>
         <sourceConnection xsi:type="archimate:Connection" id="id-de99222e76fd446abd677f5d81a3b2a4" source="id-d2fe4f9238874c17ba0056598c7515b2" target="id-14489d6ea3394103bcc472cf9d48d925" archimateRelationship="id-8b05fdfffeb6402fb63160d7fa3a0b07"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-8fb759f6251c49a8bb9e5b8feb865b31" archimateElement="id-311296fc662c47709bce3db2c4ee9602">
+        <bounds x="1440" y="744" width="169" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-aca627ed18b440b1ad5fc7642ebd36a5" source="id-8fb759f6251c49a8bb9e5b8feb865b31" target="id-57b0f2ccc2e8419f89ed00b2dc933caf" archimateRelationship="id-d0b5d685f73d43839383f8138bda3529"/>
       </child>
       <documentation>Общие функции, используемые всеми или почти всеми компонетами приложения</documentation>
     </element>
