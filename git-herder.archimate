@@ -209,7 +209,6 @@
     <element xsi:type="archimate:ServingRelationship" id="id-caba4c0b93804dac96997e49e66e5173" source="id-e46eecf780ba4ab78bc3de0d598f0bea" target="id-bcedaee54c2b42a9ae07da89c0ba11bd"/>
     <element xsi:type="archimate:ServingRelationship" id="id-7495baf60863458c93301552da3ddf9c" source="id-e46eecf780ba4ab78bc3de0d598f0bea" target="id-336911d9ca73438f806f02eae9bb07d4"/>
     <element xsi:type="archimate:FlowRelationship" id="id-78fc7026ae75439eb887c84cf9e317e0" source="id-bcedaee54c2b42a9ae07da89c0ba11bd" target="id-148d4671b17845868fc552f8fad566c9"/>
-    <element xsi:type="archimate:FlowRelationship" id="id-0634b10a3bb940a3a4958f412a7dcb91" source="id-336911d9ca73438f806f02eae9bb07d4" target="id-b64fd818686f44718ffe5c818be6bd2d"/>
     <element xsi:type="archimate:AggregationRelationship" id="id-0e2efe74a7a940d9818a0e6b3463a9f2" source="id-6b8d93faeeb64568a4524f98cd035659" target="id-41f27528f4d347618e55fc12219e0423"/>
     <element xsi:type="archimate:ServingRelationship" name="Выполнение REST-запросов" id="id-06eb03d92710404bba6542f922dae931" source="id-41f27528f4d347618e55fc12219e0423" target="id-336911d9ca73438f806f02eae9bb07d4">
       <documentation>Выполнение REST-запросов</documentation>
@@ -342,6 +341,7 @@
     <element xsi:type="archimate:CompositionRelationship" id="id-0f90934706824b578f5387050445527e" source="id-312b80f5996e4d96ac9a3e539b9c978d" target="id-78e1847f9a334b8c9e70b2666cd4fe7e"/>
     <element xsi:type="archimate:TriggeringRelationship" id="id-c218c6af339141cd99a54d718f3bfaa0" source="id-3bb2ab8583664ceb83f27935b1bd88fb" target="id-312b80f5996e4d96ac9a3e539b9c978d"/>
     <element xsi:type="archimate:ServingRelationship" name="Предоставляет реализацию ScmListingBuilder" id="id-f4ca7c429d434f87881976befdbf6558" source="id-6b8d93faeeb64568a4524f98cd035659" target="id-a52e7dbaf3af457380958ef42edf5862"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="id-904462aea9b141929e48c3d0c417c16d" source="id-336911d9ca73438f806f02eae9bb07d4" target="id-b64fd818686f44718ffe5c818be6bd2d"/>
   </folder>
   <folder name="Views" id="id-b90a7accf6a14cbabaeecbf23812c0ad" type="diagrams">
     <folder name="Command flows" id="id-2e7767d897ca4aa4ba794c5dac660493">
@@ -454,7 +454,7 @@
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-87876c0ca4304ba7ab5c8b40ee1e8643" targetConnections="id-de4dfa6dd1c64361acbe8498add4cf25 id-9a9ff6f9a0ea4338af9c2892575416fb id-79ec883ffe1b410eb78ca04ad105e71e id-d073638004fd4f45877e1bde2c6f68b5 id-47a2c054f90b42b7ac05d5d62ef1b2e6" archimateElement="id-336911d9ca73438f806f02eae9bb07d4">
             <bounds x="924" y="48" width="181" height="91"/>
-            <sourceConnection xsi:type="archimate:Connection" id="id-72b0dad312a64c658ea6b63154458924" source="id-87876c0ca4304ba7ab5c8b40ee1e8643" target="id-01864ffa9270480d89d64e1ed5491e06" archimateRelationship="id-0634b10a3bb940a3a4958f412a7dcb91"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-72b0dad312a64c658ea6b63154458924" source="id-87876c0ca4304ba7ab5c8b40ee1e8643" target="id-01864ffa9270480d89d64e1ed5491e06" archimateRelationship="id-904462aea9b141929e48c3d0c417c16d"/>
           </child>
           <child xsi:type="archimate:DiagramObject" id="id-2569e44d12cc41ca90fe9075839318ab" targetConnections="id-c3f9ff50e2234e0f883ea6d4f2779391 id-b82eb1d423954d018bc599dea54d8ff8 id-b7e35774d9a84023bfb914e4257c6a4e id-ca0e43eda00749cbafd3d6dc6365a259 id-24de7614edf14dac85d65b59db573b1d" archimateElement="id-bcedaee54c2b42a9ae07da89c0ba11bd">
             <bounds x="348" y="48" width="181" height="91"/>
