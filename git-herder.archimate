@@ -38,7 +38,8 @@
 - Реализует функцию &quot;Сгенерировать отчёт&quot; - знает, как поля карточки мапятся на поля отчёта, умеет выводить отчёт на консоль и в файл</documentation>
         </element>
         <element xsi:type="archimate:ApplicationFunction" name="Сгенерировать отчёт" id="id-6f7457917609408a9d20556ef0a8a228">
-          <documentation>Мапит карточки в CLI- или json-отчёт</documentation>
+          <documentation>- Вызывает RepositoriesReportBuilder для офрмирования очета&#xD;
+- Выводит отчёт на экран, если задан соответствующий вывод</documentation>
         </element>
         <element xsi:type="archimate:ApplicationProcess" name="Report command flow" id="id-b33d7c6b18404707966ac617f75c3f45">
           <documentation>Оркестрация бизнес-логики команды report</documentation>
@@ -163,9 +164,13 @@
 	- на вход получает имя профиля из `~/.config/git-herder` или путь-имя yaml-файла с профилем&#xD;
 	- читает и десериалзиовывает профиль, хранит структуру и значения в памяти&#xD;
 	- записывает (десериализовывает) хранимый в памяти профиль в указанных yaml-файл&#xD;
-</documentation>
+    - валидация правил «token только в root», «битый default», синтаксис YAML</documentation>
         </element>
       </folder>
+      <element xsi:type="archimate:ApplicationComponent" name="RepositoriesReportBuilder" id="id-f004cb00ca63447895bd6b60c422d2de">
+        <documentation>- Мапит карточки в текстовый или json-отчёт&#xD;
+- Возвращает текст - либо отчт для консоли, либо путь-имя json-отчёта</documentation>
+      </element>
     </folder>
     <element xsi:type="archimate:ApplicationComponent" name="Bootstrap" id="id-275db7f38336496e925e400fa76a19e1">
       <documentation>Точка входа: main передаёт argv в bootstrap.Run.&#xD;
@@ -223,7 +228,7 @@ Git Herder полезен и вообще нужен тем и только те
       <documentation>Выполнение REST-запросов</documentation>
     </element>
     <element xsi:type="archimate:RealizationRelationship" id="id-44f469f0f39c45229e90cd96bd5492dd" source="id-d0e790f918cf44a7a6725b1f982a9530" target="id-b33d7c6b18404707966ac617f75c3f45"/>
-    <element xsi:type="archimate:AccessRelationship" id="id-81f595daee034bc591fb1c4a818589ad" source="id-6f7457917609408a9d20556ef0a8a228" target="id-afa403e68666439aa0d8d0d5f13e41c7"/>
+    <element xsi:type="archimate:AccessRelationship" id="id-81f595daee034bc591fb1c4a818589ad" source="id-f004cb00ca63447895bd6b60c422d2de" target="id-afa403e68666439aa0d8d0d5f13e41c7"/>
     <element xsi:type="archimate:ServingRelationship" id="id-76b0a211ea314ef58fb47f1961437133" source="id-e46eecf780ba4ab78bc3de0d598f0bea" target="id-d4a8188abea841a6af4564d786df5814"/>
     <element xsi:type="archimate:RealizationRelationship" id="id-76c9775883b54398be055861622c1250" source="id-2a1f781021bd4afca120283b371935f9" target="id-78e1847f9a334b8c9e70b2666cd4fe7e"/>
     <element xsi:type="archimate:RealizationRelationship" id="id-268df3135b074cbd8452439948a11888" source="id-3afd49e7d96d4119aa7e4aefcc1f3ee4" target="id-41f27528f4d347618e55fc12219e0423"/>
@@ -353,6 +358,7 @@ Git Herder полезен и вообще нужен тем и только те
       <documentation>runner запускает подпроцессы ОС, в которых выполняется git CLI</documentation>
     </element>
     <element xsi:type="archimate:FlowRelationship" id="id-db277a287aa640b49d29cd864388809f" source="id-336911d9ca73438f806f02eae9bb07d4" target="id-d6c708c532974615be258efe0fe96b6f"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-cd88801f1527442999e54e1de5966544" source="id-f004cb00ca63447895bd6b60c422d2de" target="id-6f7457917609408a9d20556ef0a8a228"/>
   </folder>
   <folder name="Views" id="id-b90a7accf6a14cbabaeecbf23812c0ad" type="diagrams">
     <folder name="Command flows" id="id-2e7767d897ca4aa4ba794c5dac660493">
@@ -366,12 +372,11 @@ Git Herder полезен и вообще нужен тем и только те
           <bounds x="168" y="36" width="648" height="55"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-19a2913f79f0432183b926ca39f2637d" source="id-a86a45380fa54260ac0e824709d52d57" target="id-cad1daa89f594aa99f4df07e1c33c4d8" archimateRelationship="id-44f469f0f39c45229e90cd96bd5492dd"/>
         </child>
-        <child xsi:type="archimate:DiagramObject" id="id-c0ce9b22ba314409aecfa4ae9dc60b73" targetConnections="id-c9a2aeaa9a3c44a49e98682399c0c3fc id-cbb3aacfaa5d46c7a64652c42258ae75 id-f22f1ab5e92740e990f6ef41a290bca5" archimateElement="id-6f7457917609408a9d20556ef0a8a228">
+        <child xsi:type="archimate:DiagramObject" id="id-c0ce9b22ba314409aecfa4ae9dc60b73" targetConnections="id-c9a2aeaa9a3c44a49e98682399c0c3fc id-cbb3aacfaa5d46c7a64652c42258ae75 id-f22f1ab5e92740e990f6ef41a290bca5 id-579f0262a12e4bf78dfe17c61f3a02ba" archimateElement="id-6f7457917609408a9d20556ef0a8a228">
           <bounds x="528" y="336" width="288" height="55"/>
-          <sourceConnection xsi:type="archimate:Connection" id="id-56dedaac6e9e4439a7775f851f6b7cab" source="id-c0ce9b22ba314409aecfa4ae9dc60b73" target="id-290f26df26f64c19bb421ae0741422de" archimateRelationship="id-81f595daee034bc591fb1c4a818589ad"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-290f26df26f64c19bb421ae0741422de" targetConnections="id-56dedaac6e9e4439a7775f851f6b7cab" archimateElement="id-afa403e68666439aa0d8d0d5f13e41c7">
-          <bounds x="960" y="336" width="169" height="55"/>
+          <bounds x="1007" y="336" width="169" height="55"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-d8a396ea6b374780b3e6aa271b19cf10" archimateElement="id-b6dc0d0e166345f3a554d6be46fd261c">
           <bounds x="528" y="480" width="288" height="55"/>
@@ -384,6 +389,11 @@ Git Herder полезен и вообще нужен тем и только те
         <child xsi:type="archimate:DiagramObject" id="id-05d07a82d32347a7bc9ca59d99792f4a" archimateElement="id-2ffa7aa5e95e482c83ebdd61cc4defcd">
           <bounds x="168" y="486" width="229" height="55"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-4b9715b6c5cb407283af3ffa85840fac" source="id-05d07a82d32347a7bc9ca59d99792f4a" target="id-e9b820522ead41c09575a6ea3a3d2b87" archimateRelationship="id-392f201dce4045c6a0b2fa8356f4726b"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-44524fe1aed941e1b0ca2eda97a92d63" archimateElement="id-f004cb00ca63447895bd6b60c422d2de">
+          <bounds x="948" y="480" width="288" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-56dedaac6e9e4439a7775f851f6b7cab" source="id-44524fe1aed941e1b0ca2eda97a92d63" target="id-290f26df26f64c19bb421ae0741422de" archimateRelationship="id-81f595daee034bc591fb1c4a818589ad"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-579f0262a12e4bf78dfe17c61f3a02ba" source="id-44524fe1aed941e1b0ca2eda97a92d63" target="id-c0ce9b22ba314409aecfa4ae9dc60b73" archimateRelationship="id-cd88801f1527442999e54e1de5966544"/>
         </child>
       </element>
       <element xsi:type="archimate:ArchimateDiagramModel" name="Clone command flow" id="id-16f0ab689780470b80ca9c86da2fe0f8">
