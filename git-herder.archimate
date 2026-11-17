@@ -81,9 +81,7 @@
 - переключает отобранные рабочие копии на ветку &lt;branch>&#xD;
 - не использует RetryingQueue</documentation>
         </element>
-        <element xsi:type="archimate:ApplicationProcess" name="Switch command flow" id="id-053bc12049c140448ddef05ba3aa9cec">
-          <documentation>колбэк никакой не передаёт, т.к. обрабатывать может вообще любую рабочую копию</documentation>
-        </element>
+        <element xsi:type="archimate:ApplicationProcess" name="Switch command flow" id="id-053bc12049c140448ddef05ba3aa9cec"/>
         <element xsi:type="archimate:ApplicationFunction" name="switch" id="id-0b52e9ccbe07458fa5b1b7306e7bd13c"/>
       </folder>
       <folder name="Merge" id="id-248b3ebcfd38447ca5223ad73ab2e33c">
