@@ -89,12 +89,13 @@
       <folder name="Merge" id="id-248b3ebcfd38447ca5223ad73ab2e33c">
         <element xsi:type="archimate:ApplicationComponent" name="Merge command" id="id-0ea48c5e3203465dadbe2389c43cb3c8">
           <documentation>Обработчик команды `githerd merge &lt;from-branch-name> [to-branch-name]`&#xD;
-- мержит из from-branch-name в to-branch-name в отобранных рабочих копиях&#xD;
-- если to-branch-name не задан, то мержит в текщую (если только текущая не совпадает с from-branch-name)</documentation>
+- мержит локальную ветку from-branch-name в ветку to-branch-name в отобранных рабочих копиях&#xD;
+- если to-branch-name не задан, имя одно на прогон: init.defaultBranch, иначе master&#xD;
+- перед слиянием делает git fetch выбранного remote&#xD;
+- не использует RetryingQueue</documentation>
         </element>
         <element xsi:type="archimate:ApplicationProcess" name="Merge command flow" id="id-33fac1d6f54142df9ba58e870822d3f7">
-          <documentation>В GitWorkingCopiesResolver передаёт колбэк, который отбрасывает рабочие копии в которых ветки from-branch-name&#xD;
-</documentation>
+          <documentation>В GitWorkingCopiesResolver передаёт колбэк, который отбрасывает рабочие копии, где нет локальной ветки from-branch-name</documentation>
         </element>
         <element xsi:type="archimate:ApplicationFunction" name="merge" id="id-06226a903e2d4d979f1f91a5d89f5d25"/>
       </folder>
