@@ -13,6 +13,7 @@ Archi или совместимый инструмент). Резервная к
 | ------------- | ---------- | --------- |
 | **SCM Listing & Enrichment** | ScmClientFactory, Builder'ы, runtime-интерфейсы ScmListing / ScmEnrich, platform-адаптеры, ScmHttpTransport | [scm/index.md § ArchiMate][scm-archimate], [ADR-26110801][adr-layout] |
 | **Report command flow** | Процесс «Загрузка из SCM и обогащение карточек» (`id-649305ae`) в сценарии report | [scm/index.md][scm-index], [cli/report/index.md](../specifications/cli/report/index.md) |
+| **sync** | Sync command flow (`id-ac49f18a`): отбор копий, граница ретрая sync, pull и push через GitCliRunner | [cli/sync/index.md][cli-sync] |
 
 Оркестрация фаз listing → enrichment → enumeration — SSOT в
 [scm/index.md][scm-index]. Раскладка hub / listing / enrichment /
@@ -36,3 +37,4 @@ enumeration — [ADR-26102201][adr-hub].
 [scm-archimate]: ../specifications/scm/index.md#archimate-scm-application
 [adr-layout]: ../../ADR/ADR-26110801-go-package-layout.md
 [adr-hub]: ../../ADR/ADR-26102201-scm-selection-hub-extension-specs.md
+[cli-sync]: ../specifications/cli/sync/index.md
