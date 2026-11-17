@@ -546,7 +546,7 @@ Git Herder полезен и вообще нужен тем и только те
   </folder>
   <folder name="Views" id="id-b90a7accf6a14cbabaeecbf23812c0ad" type="diagrams">
     <folder name="Command flows" id="id-2e7767d897ca4aa4ba794c5dac660493">
-      <element xsi:type="archimate:ArchimateDiagramModel" name="Report command flow" id="id-531129e92bc54d5290a960fa7028c6f7">
+      <element xsi:type="archimate:ArchimateDiagramModel" name="Report" id="id-531129e92bc54d5290a960fa7028c6f7">
         <child xsi:type="archimate:DiagramObject" id="id-cad1daa89f594aa99f4df07e1c33c4d8" targetConnections="id-19a2913f79f0432183b926ca39f2637d" archimateElement="id-b33d7c6b18404707966ac617f75c3f45">
           <bounds x="168" y="180" width="648" height="61"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-c9a2aeaa9a3c44a49e98682399c0c3fc" source="id-cad1daa89f594aa99f4df07e1c33c4d8" target="id-c0ce9b22ba314409aecfa4ae9dc60b73" archimateRelationship="id-33ee1ff736574ddb883594e8c779752d"/>
@@ -580,7 +580,7 @@ Git Herder полезен и вообще нужен тем и только те
           <sourceConnection xsi:type="archimate:Connection" id="id-579f0262a12e4bf78dfe17c61f3a02ba" source="id-44524fe1aed941e1b0ca2eda97a92d63" target="id-c0ce9b22ba314409aecfa4ae9dc60b73" archimateRelationship="id-cd88801f1527442999e54e1de5966544"/>
         </child>
       </element>
-      <element xsi:type="archimate:ArchimateDiagramModel" name="Clone command flow" id="id-16f0ab689780470b80ca9c86da2fe0f8">
+      <element xsi:type="archimate:ArchimateDiagramModel" name="Clone" id="id-16f0ab689780470b80ca9c86da2fe0f8">
         <child xsi:type="archimate:DiagramObject" id="id-898627ff82264fc4917c138ccc51dc3c" archimateElement="id-e46eecf780ba4ab78bc3de0d598f0bea">
           <bounds x="744" y="504" width="133" height="55"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-a6a1d27cf7924753be960ca324340724" source="id-898627ff82264fc4917c138ccc51dc3c" target="id-5c3fdaf275944620ae8edc19bda77081" archimateRelationship="id-76b0a211ea314ef58fb47f1961437133"/>
@@ -616,7 +616,7 @@ Git Herder полезен и вообще нужен тем и только те
           <sourceConnection xsi:type="archimate:Connection" id="id-22cb940f67854b54bd1624fdcda74792" source="id-804bca5eba144880970d61ee88a82c61" target="id-5c3fdaf275944620ae8edc19bda77081" archimateRelationship="id-e1f04131854c481bab1db2cfe1c63ad9"/>
         </child>
       </element>
-      <element xsi:type="archimate:ArchimateDiagramModel" name="Profile command flow" id="id-6f74e771c3ab4b2db677bcb6568cc5ed">
+      <element xsi:type="archimate:ArchimateDiagramModel" name="Profile" id="id-6f74e771c3ab4b2db677bcb6568cc5ed">
         <child xsi:type="archimate:DiagramObject" id="id-ca0aaf7794cc48e292f43ad7e97bd9ab" archimateElement="id-263d0dab4d314ac29f5608862c15b052">
           <bounds x="204" y="144" width="120" height="115"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-d436fc4e131d4765b75c66de98387ef7" source="id-ca0aaf7794cc48e292f43ad7e97bd9ab" target="id-4f5db0ef7b244113bcba0b834920be8c" archimateRelationship="id-43e5ab4ca92d4736b42992d6bf1d14d6"/>
@@ -669,7 +669,7 @@ Git Herder полезен и вообще нужен тем и только те
           <feature name="labelExpression" value="edit &lt;name>&#xD;&#xA;${name}"/>
         </child>
       </element>
-      <element xsi:type="archimate:ArchimateDiagramModel" name="Publish command flow" id="id-a0968f4927c547fa8a0347acbd1fc10a">
+      <element xsi:type="archimate:ArchimateDiagramModel" name="Publish" id="id-a0968f4927c547fa8a0347acbd1fc10a">
         <child xsi:type="archimate:DiagramObject" id="id-a7fc94339960437f908c5ba8cf887b67" targetConnections="id-1f989f4a42f24f898d0e010409511f12" textAlignment="1" archimateElement="id-756cdaa6ec2242c6b7e50c819b4ae4e9">
           <bounds x="672" y="250" width="733" height="133"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-74db706f5de94ee1aa900a6f3244cfcb" source="id-a7fc94339960437f908c5ba8cf887b67" target="id-60bfda7ff2294ec2b2c2592a0669f7e8" archimateRelationship="id-2c83af1faed8444e9282117d6871365f"/>
@@ -715,7 +715,7 @@ Git Herder полезен и вообще нужен тем и только те
           <sourceConnection xsi:type="archimate:Connection" id="id-637f92821a7247989c81b27b5a40ebe7" source="id-4d2b4d4b9bd045159451510e425cf9e7" target="id-60bfda7ff2294ec2b2c2592a0669f7e8" archimateRelationship="id-6b5261c23de24054a09af4101c4b70d5"/>
         </child>
       </element>
-      <element xsi:type="archimate:ArchimateDiagramModel" name="Switch command flow" id="id-6715348b0dbf46f9965c3ad3b2a4eabd">
+      <element xsi:type="archimate:ArchimateDiagramModel" name="Switch" id="id-6715348b0dbf46f9965c3ad3b2a4eabd">
         <child xsi:type="archimate:DiagramObject" id="id-149923e803fb4721aec4530950a9bf56" archimateElement="id-c6721ce7b219486d8adc68812f64a538">
           <bounds x="192" y="108" width="120" height="55"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-7aa921043cc24526a47ad48b65c36cca" source="id-149923e803fb4721aec4530950a9bf56" target="id-b379be906ec3475082c8a99daf2474ef" archimateRelationship="id-ac89911522014dee95a5c50e55308955"/>
@@ -737,7 +737,7 @@ Git Herder полезен и вообще нужен тем и только те
           <sourceConnection xsi:type="archimate:Connection" id="id-190783015bc54b56a3fd7c497fb04266" source="id-cb0243b6ebb64120ae5757bf7aefd4d9" target="id-e2927afda4dd4b2ba61c37c39beaee36" archimateRelationship="id-da73c28d851a40a59b5dbc55dae670ad"/>
         </child>
       </element>
-      <element xsi:type="archimate:ArchimateDiagramModel" name="Sync command flow" id="id-0823b3b736b445ddab49edf111bf78b6">
+      <element xsi:type="archimate:ArchimateDiagramModel" name="Sync" id="id-0823b3b736b445ddab49edf111bf78b6">
         <child xsi:type="archimate:DiagramObject" id="id-76e6e904503a422393d36b58e9b5fcb5" targetConnections="id-7b751009310b43bb9facf08cf09f3f64 id-67e089b0ea1f490cb6b5ae5d84ae02cd" textAlignment="1" archimateElement="id-8a648c4b86c0449cad4486788f8bd234">
           <bounds x="480" y="144" width="349" height="133"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-c1d2128ab0c34a30afa7dc4902a817c4" source="id-76e6e904503a422393d36b58e9b5fcb5" target="id-2765de372bd64ab599eb55d75a1fa3e5" archimateRelationship="id-d3bb999d94b7490b98ffe69793ee4179"/>
@@ -774,7 +774,7 @@ Git Herder полезен и вообще нужен тем и только те
           <sourceConnection xsi:type="archimate:Connection" id="id-fa0e5f9fb4cd4b8ca501bd8637733bf5" source="id-14a8fd79af504d9b82fb0e8b78616844" target="id-f6ee3c18c2e4442294bedb7adfa2a77b" archimateRelationship="id-7aef83f2b22a462983d575e40744871d"/>
         </child>
       </element>
-      <element xsi:type="archimate:ArchimateDiagramModel" name="Merge command flow" id="id-cd2db8e531134cad9da289f258637e04">
+      <element xsi:type="archimate:ArchimateDiagramModel" name="Merge" id="id-cd2db8e531134cad9da289f258637e04">
         <child xsi:type="archimate:DiagramObject" id="id-a04ab2ed27f84a8e96d1eb000f35e0ac" targetConnections="id-e3ef16c2ae304c528f225d3be8e56637" archimateElement="id-3ef1b0caa69e4441a14ab335f5a4ba14">
           <bounds x="444" y="234" width="120" height="55"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-8eacc122fcc0443fbd71eebc9387344b" source="id-a04ab2ed27f84a8e96d1eb000f35e0ac" target="id-59748c38631c46b89309b9b98293f5d6" archimateRelationship="id-25c2d7c5a04f422d849ab9fce1f87b5a"/>
