@@ -15,6 +15,7 @@ Archi или совместимый инструмент). Резервная к
 | **Report command flow** | Процесс «Загрузка из SCM и обогащение карточек» (`id-649305ae`) в сценарии report | [scm/index.md][scm-index], [cli/report/index.md](../specifications/cli/report/index.md) |
 | **sync** | Sync command flow (`id-ac49f18a`): отбор копий, граница ретрая sync, pull и push через GitCliRunner | [cli/sync/index.md][cli-sync] |
 | **Merge command flow** | Merge command flow (`id-cd2db8e531134cad9da289f258637e04`): отбор копий, fetch и merge через GitCliRunner, без RetryingQueue | [cli/merge/index.md][cli-merge] |
+| **Switch command flow** | Switch command flow (`id-6715348b0dbf46f9965c3ad3b2a4eabd`): отбор копий и `git switch` через GitCliRunner, без RetryingQueue | [cli/switch/index.md][cli-switch] |
 
 Оркестрация фаз listing → enrichment → enumeration — SSOT в
 [scm/index.md][scm-index]. Раскладка hub / listing / enrichment /
@@ -40,3 +41,4 @@ enumeration — [ADR-26102201][adr-hub].
 [adr-hub]: ../../ADR/ADR-26102201-scm-selection-hub-extension-specs.md
 [cli-sync]: ../specifications/cli/sync/index.md
 [cli-merge]: ../specifications/cli/merge/index.md
+[cli-switch]: ../specifications/cli/switch/index.md
