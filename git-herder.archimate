@@ -93,10 +93,8 @@
 - если to-branch-name не задан, то мержит в текщую (если только текущая не совпадает с from-branch-name)</documentation>
         </element>
         <element xsi:type="archimate:ApplicationProcess" name="Merge command flow" id="id-33fac1d6f54142df9ba58e870822d3f7">
-          <documentation>В GitWorkingCopiesResolver передаёт колбэк, который отбрасывает рабочие копии:&#xD;
-- в которых нет локальной ветки from-branch-name&#xD;
-- в которых нет локальной ветки to-branch-name, если передан параметр to-branch-name&#xD;
-- если не передан to-branch-name, то отсеивает те, где текущая ветка совпадает с from-branch-name</documentation>
+          <documentation>В GitWorkingCopiesResolver передаёт колбэк, который отбрасывает рабочие копии в которых ветки from-branch-name&#xD;
+</documentation>
         </element>
         <element xsi:type="archimate:ApplicationFunction" name="merge" id="id-06226a903e2d4d979f1f91a5d89f5d25"/>
       </folder>
@@ -302,30 +300,6 @@
     </element>
     <element xsi:type="archimate:ApplicationService" name="Замена обогащаемых полей карточки" id="id-85b81e3e9e5847ce98f383659dc2beac"/>
     <element xsi:type="archimate:ApplicationInterface" name="Порт записи обогащения" id="id-2de412fe54cf41e1bf854c580fc5008f"/>
-    <element xsi:type="archimate:ApplicationProcess" name="Поиск и отбор рабочих копий git-репозиториев (copy)" id="id-c346f64268d14b4f8efb2e1770232679">
-      <documentation>На вхо получает:&#xD;
-- `--workspace` - путь-имя воркспэйса, в котором нужно найти рабочие копии&#xD;
-- `--qp` - регэксп для фильтра по пути рабочей копии&#xD;
-- `--qn` - регэксп для фильтра по имени (последний компонен пути) рабочей копии&#xD;
-- колбэк для произвольной фильтрации найденных&#xD;
-- признак `--interactive` для запуска ручного выбора</documentation>
-    </element>
-    <element xsi:type="archimate:ApplicationFunction" name="merge (copy)" id="id-8b4580189b824626976b01ce48f64abf"/>
-    <element xsi:type="archimate:ApplicationComponent" name="Merge command (copy)" id="id-a6978379a82e48feb97b29130e3a9ff6">
-      <documentation>Обработчик команды `githerd merge &lt;from-branch-name> [to-branch-name]`&#xD;
-- мержит из from-branch-name в to-branch-name в отобранных рабочих копиях&#xD;
-- если to-branch-name не задан, то мержит в текщую (если только текущая не совпадает с from-branch-name)</documentation>
-    </element>
-    <element xsi:type="archimate:ApplicationProcess" name="Merge command flow (copy)" id="id-0190dabd0174443c8eb5e8a666dffc9e">
-      <documentation>В GitWorkingCopiesResolver передаёт колбэк, который отбрасывает рабочие копии:&#xD;
-- в которых нет локальной ветки from-branch-name&#xD;
-- в которых нет локальной ветки to-branch-name, если передан параметр to-branch-name&#xD;
-- если не передан to-branch-name, то отсеивает те, где текущая ветка совпадает с from-branch-name</documentation>
-    </element>
-    <element xsi:type="archimate:ApplicationComponent" name="GitCliRunner (copy)" id="id-97874de83a7247aabd708b20df3a0323">
-      <documentation>- Собирает командную строку для запуска git&#xD;
-- Создает и запускает подпроцесс, выполняющий команду git</documentation>
-    </element>
   </folder>
   <folder name="Technology &amp; Physical" id="id-d8148b8e092c45028bad546d56c2a03f" type="technology">
     <element xsi:type="archimate:SystemSoftware" name="Cobra" id="id-677c4d2c25af4ebd891286e5e0510749"/>
@@ -570,11 +544,6 @@ Git Herder полезен и вообще нужен тем и только те
     <element xsi:type="archimate:CompositionRelationship" id="id-111712729baa47359bcfe0fedadce945" source="id-33fac1d6f54142df9ba58e870822d3f7" target="id-06226a903e2d4d979f1f91a5d89f5d25"/>
     <element xsi:type="archimate:FlowRelationship" id="id-25c2d7c5a04f422d849ab9fce1f87b5a" source="id-3ef1b0caa69e4441a14ab335f5a4ba14" target="id-06226a903e2d4d979f1f91a5d89f5d25"/>
     <element xsi:type="archimate:ServingRelationship" id="id-63241d21e7de444993257370893aa48b" source="id-df00f6aad5a24ace847566d69059171b" target="id-06226a903e2d4d979f1f91a5d89f5d25"/>
-    <element xsi:type="archimate:AggregationRelationship" id="id-c62eaef9536b4ae6aaf33dbb00c7f891" source="id-0190dabd0174443c8eb5e8a666dffc9e" target="id-c346f64268d14b4f8efb2e1770232679"/>
-    <element xsi:type="archimate:CompositionRelationship" id="id-235e7403787d41349421f0b9f502defe" source="id-0190dabd0174443c8eb5e8a666dffc9e" target="id-8b4580189b824626976b01ce48f64abf"/>
-    <element xsi:type="archimate:ServingRelationship" id="id-365051d9723e4936bb845edad043de1b" source="id-97874de83a7247aabd708b20df3a0323" target="id-8b4580189b824626976b01ce48f64abf"/>
-    <element xsi:type="archimate:FlowRelationship" id="id-726857acec7a47d38109d69989b889ce" source="id-c346f64268d14b4f8efb2e1770232679" target="id-8b4580189b824626976b01ce48f64abf"/>
-    <element xsi:type="archimate:RealizationRelationship" id="id-645d178e881147469065190f65201910" source="id-a6978379a82e48feb97b29130e3a9ff6" target="id-0190dabd0174443c8eb5e8a666dffc9e"/>
   </folder>
   <folder name="Views" id="id-b90a7accf6a14cbabaeecbf23812c0ad" type="diagrams">
     <folder name="Command flows" id="id-2e7767d897ca4aa4ba794c5dac660493">
