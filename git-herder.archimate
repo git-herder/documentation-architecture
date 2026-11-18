@@ -111,11 +111,15 @@
           <documentation>прокси-команда, глагол git — remote</documentation>
         </element>
         <element xsi:type="archimate:ApplicationProcess" name="Proxy command flow" id="id-db80883cd6db492891963f6a5ea6b081">
-          <documentation>Отбор через «Поиск и отбор рабочих копий git-репозиториев» без колбэка;&#xD;
-Затем один запуск git на копию, отчёт по коду возврата.&#xD;
-RetryingQueue не использует.</documentation>
+          <documentation>Отбор через «Поиск и отбор рабочих копий git-репозиториев» без колбэка.&#xD;
+Дальше функция «Запустить git с хвостом argv»: при непустом токене чтение ремотов, затем один пользовательский git.&#xD;
+Отчёт по коду возврата. RetryingQueue не использует.</documentation>
         </element>
-        <element xsi:type="archimate:ApplicationFunction" name="Запустить git с хвостом argv" id="id-283ecc9f3f354dde9469211aeab15ff7"/>
+        <element xsi:type="archimate:ApplicationFunction" name="Запустить git с хвостом argv" id="id-283ecc9f3f354dde9469211aeab15ff7">
+          <documentation>На копию два вида вызовов GitCliRunner.&#xD;
+При непустом git-https-token сначала чтение ремотов, затем один пользовательский git с хвостом.&#xD;
+Хвост приходит из «Распарсить argv».</documentation>
+        </element>
       </folder>
       <documentation>Эти компоненты инкапсулируют поток выполнения команд.</documentation>
     </folder>
@@ -151,14 +155,8 @@ RetryingQueue не использует.</documentation>
 &#xD;
 Все пакеты, которым нужны параметры запуска или профиль, получают эти сведения из Invocation.&#xD;
 &#xD;
-Прокси-команда:&#xD;
-&#xD;
-- на вход получает тот же argv&#xD;
-- делит argv на префикс и хвост. В префиксе флаги Git Herder до имени команды и сразу после него. Первый токен, который не является таким флагом, начинает хвост. Разделитель `--` заканчивает префикс и в хвост не входит. Имя команды в хвост не входит: оно задаёт git-глагол&#xD;
-- префикс разбирает через Cobra и pflag и объединяет с профилем по тем же правилам резолва&#xD;
-- хвост оставляет списком токенов в исходном порядке&#xD;
-- на выходе два значения: отрезолвленные параметры запуска и хвост&#xD;
-&#xD;
+Прокси-команда делит argv на префикс и хвост по контракту спецификации.&#xD;
+Наружу отдаёт отрезолвленный префикс и список токенов хвоста.&#xD;
 Параметры запуска читают все пакеты, как и раньше.&#xD;
 Хвост читает функция «Запустить git с хвостом argv».</documentation>
       </element>
@@ -320,7 +318,10 @@ RetryingQueue не использует.</documentation>
     <element xsi:type="archimate:DataObject" name="argv" id="id-e5775fdc1af14975bc70805f9d8c549d">
       <documentation>массив CLI-параметров, полученных от операционной системы</documentation>
     </element>
-    <element xsi:type="archimate:ApplicationFunction" name="Распарсить argv" id="id-ec3e8ffd6b9d44df98b52bdd8f447c55"/>
+    <element xsi:type="archimate:ApplicationFunction" name="Распарсить argv" id="id-ec3e8ffd6b9d44df98b52bdd8f447c55">
+      <documentation>Для команд pull, push, fetch и remote разделение префикса и хвоста задаёт спецификация прокси-команды.&#xD;
+Для остальных команд argv разбирает Cobra.</documentation>
+    </element>
     <element xsi:type="archimate:ApplicationFunction" name="Прочитать профиль в зависимости от --profile и текущего профиля по умолчанию" id="id-327123e299564430af301e068d1c6909"/>
     <element xsi:type="archimate:ApplicationFunction" name="Объединить профиль с argv по правилам резолва" id="id-9d286dd84b8049a5b3912a65113e6986"/>
     <element xsi:type="archimate:ApplicationFunction" name="Запуск command flow" id="id-3bb2ab8583664ceb83f27935b1bd88fb"/>
@@ -587,6 +588,7 @@ Git Herder полезен и вообще нужен тем и только те
     <element xsi:type="archimate:CompositionRelationship" id="id-9177e8ab4f9644e0aa52e3ad9dbbeca8" source="id-5c4970f66b7045e091bc8903611e39f6" target="id-3a2f580947b7448c9b72040e15981207"/>
     <element xsi:type="archimate:CompositionRelationship" id="id-9f5a3d64ac0d4df88b450ff55428f2da" source="id-5c4970f66b7045e091bc8903611e39f6" target="id-b105152d94474c5bb486627991f10dc1"/>
     <element xsi:type="archimate:CompositionRelationship" id="id-44dd31065cc8426d8fe11309dbd4752a" source="id-5c4970f66b7045e091bc8903611e39f6" target="id-45f6891ada184fe4a8e10aa46d8c2b7c"/>
+    <element xsi:type="archimate:ServingRelationship" name="Деление argv на параметры githerd и хвост прокси-команд" id="id-49e4f14045624ad5a5807a74649a18e9" source="id-3dd3d6221e1e420985e5297de3e6355d" target="id-5c4970f66b7045e091bc8903611e39f6"/>
   </folder>
   <folder name="Views" id="id-b90a7accf6a14cbabaeecbf23812c0ad" type="diagrams">
     <folder name="Command flows" id="id-2e7767d897ca4aa4ba794c5dac660493">
@@ -1310,9 +1312,14 @@ ScmEnrichmentFactory создаёт и возвращает массив реа�
         <bounds x="157" y="720" width="348" height="55"/>
         <sourceConnection xsi:type="archimate:Connection" id="id-7e9d7e382d5f4bddbfb8d17bbe49f727" source="id-1ebce606d44641f9ab637e000daeb405" target="id-05016c7b6d0c4df7b7bce6b041843585" archimateRelationship="id-0f13fe5203b04f42acd13b577590154b">
           <feature name="labelExpression" value="Единый API к Cobra, pflag, мерж&#xD;&#xA;профиля и параметров CLI"/>
+          <bendpoint startX="-103" startY="-63" endX="-102" endY="274"/>
+        </sourceConnection>
+        <sourceConnection xsi:type="archimate:Connection" id="id-d1c329560eed40479f03951305194cdd" source="id-1ebce606d44641f9ab637e000daeb405" target="id-05016c7b6d0c4df7b7bce6b041843585" archimateRelationship="id-49e4f14045624ad5a5807a74649a18e9">
+          <feature name="labelExpression" value="Деление argv на&#xD;&#xA;параметры githerd&#xD;&#xA;и хвост прокси-команд"/>
+          <bendpoint startX="101" startY="-75" endX="102" endY="262"/>
         </sourceConnection>
       </child>
-      <child xsi:type="archimate:DiagramObject" id="id-05016c7b6d0c4df7b7bce6b041843585" targetConnections="id-7e9d7e382d5f4bddbfb8d17bbe49f727 id-4f91960242bf48bdab8bb222e8e333f5 id-9ebac42fa61f4cdbb883cd97c0843dbd id-0affd854bb3644ba8f04283fdf1901b8" textAlignment="1" archimateElement="id-5c4970f66b7045e091bc8903611e39f6">
+      <child xsi:type="archimate:DiagramObject" id="id-05016c7b6d0c4df7b7bce6b041843585" targetConnections="id-7e9d7e382d5f4bddbfb8d17bbe49f727 id-4f91960242bf48bdab8bb222e8e333f5 id-9ebac42fa61f4cdbb883cd97c0843dbd id-0affd854bb3644ba8f04283fdf1901b8 id-d1c329560eed40479f03951305194cdd" textAlignment="1" archimateElement="id-5c4970f66b7045e091bc8903611e39f6">
         <bounds x="24" y="188" width="613" height="445"/>
         <sourceConnection xsi:type="archimate:Connection" id="id-582f5237050741fda7eaeb4ccdca24bb" source="id-05016c7b6d0c4df7b7bce6b041843585" target="id-4c2907edcc15448b8d818ab6ac10a99b" archimateRelationship="id-b312d9b5adf44610b6d469dc21ad6f5d"/>
         <sourceConnection xsi:type="archimate:Connection" id="id-9687677e7e374fc29901275668b750d7" source="id-05016c7b6d0c4df7b7bce6b041843585" target="id-6989eff35f9e4f51807032eca72c12f7" archimateRelationship="id-f239c40e070e4f35b4709cf91acacce0"/>
