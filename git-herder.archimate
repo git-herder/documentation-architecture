@@ -97,7 +97,6 @@
         </element>
         <element xsi:type="archimate:ApplicationFunction" name="merge" id="id-06226a903e2d4d979f1f91a5d89f5d25"/>
       </folder>
-      <folder name="Remote" id="id-c94846b12e7a4d5cb986572257731062"/>
       <folder name="Прокси-команды" id="id-a3d20c7650cf4f49845dd4c0d22fb0b5">
         <element xsi:type="archimate:ApplicationComponent" name="Pull command" id="id-3a2f580947b7448c9b72040e15981207">
           <documentation>прокси-команда, глагол git — pull</documentation>
@@ -155,7 +154,7 @@ RetryingQueue не использует.</documentation>
 Прокси-команда:&#xD;
 &#xD;
 - на вход получает тот же argv&#xD;
-- делит argv на префикс и хвост, разделителем является git-глагол (имя самой прокси-команды)&#xD;
+- делит argv на префикс и хвост. В префиксе флаги Git Herder до имени команды и сразу после него. Первый токен, который не является таким флагом, начинает хвост. Имя команды в хвост не входит: оно задаёт git-глагол&#xD;
 - префикс разбирает через Cobra и pflag и объединяет с профилем по тем же правилам резолва&#xD;
 - хвост оставляет списком токенов в исходном порядке&#xD;
 - на выходе два значения: отрезолвленные параметры запуска и хвост&#xD;
