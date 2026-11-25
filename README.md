@@ -16,7 +16,7 @@ Archi или совместимый инструмент). Резервная к
 | **sync** | Sync command flow (`id-ac49f18a`): отбор копий, граница ретрая sync, pull и push через GitCliRunner | [cli/sync/index.md][cli-sync] |
 | **Merge command flow** | Merge command flow (`id-cd2db8e531134cad9da289f258637e04`): отбор копий, fetch и merge через GitCliRunner, без RetryingQueue | [cli/merge/index.md][cli-merge] |
 | **Switch command flow** | Switch command flow (`id-6715348b0dbf46f9965c3ad3b2a4eabd`): отбор копий и `git switch` через GitCliRunner, без RetryingQueue | [cli/switch/index.md][cli-switch] |
-| **Proxy command** | Proxy command (`id-c77c4b292e884dab9b249807e1e94a3d`): четыре команды, один поток; отбор без колбэка; хвост из разбора argv в функцию запуска git; без RetryingQueue | [platform/proxy-command.md][proxy-command] |
+| **Proxy command** | Proxy command (`id-c77c4b292e884dab9b249807e1e94a3d`): четыре команды, один поток; отбор без критериев; хвост из разбора argv в функцию запуска git; без RetryingQueue | [platform/proxy-command.md][proxy-command] |
 
 Оркестрация фаз listing → enrichment → enumeration — SSOT в
 [scm/index.md][scm-index]. Раскладка hub / listing / enrichment /

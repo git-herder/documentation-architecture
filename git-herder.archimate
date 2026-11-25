@@ -274,10 +274,10 @@
       </folder>
       <folder name="Workspace" id="id-08514885c8f846a291e3263d502f99dc">
         <element xsi:type="archimate:ApplicationComponent" name="GitWorkingCopiesResolver" id="id-6fc0261c087c4d9e8d324628686cbb23">
-          <documentation>Получает на вход каталог, `--qp`/`--qn`, набор критериев отбора (через билдер) и `--interactive`.&#xD;
+          <documentation>Текучий API: `Resolve()` без аргументов, затем методы `Workspace`, `Path`, `Name`, критерии и `Interactive`. `Find` запускает шаги. Колбэка нет.&#xD;
 &#xD;
 - В каталоге рекурсивно по всем подкаталогам ищет рабочие копии гита (это подкаталоги, в которых есть папка `.git`).&#xD;
-- После того, как нашёл все рабочие копии, применяет к списку критерии отбора билдера.&#xD;
+- После того, как нашёл все рабочие копии, применяет накопленные критерии через GitCliRunner.&#xD;
 - То, что осталось после критериев отбора, возвращает вызвавшему</documentation>
         </element>
         <element xsi:type="archimate:ApplicationProcess" name="Поиск и отбор рабочих копий git-репозиториев" id="id-3ef1b0caa69e4441a14ab335f5a4ba14">
@@ -285,11 +285,11 @@
 - `--workspace` - путь-имя воркспэйса, в котором нужно найти рабочие копии&#xD;
 - `--qp` - регэксп для фильтра по пути рабочей копии&#xD;
 - `--qn` - регэксп для фильтра по имени (последний компонен пути) рабочей копии&#xD;
-- критерии отбора (builder)&#xD;
+- критерии отбора, накопленные методами резолвера&#xD;
 - признак `--interactive` для запуска ручного выбора</documentation>
         </element>
-        <element xsi:type="archimate:ApplicationFunction" name="Применение критериев отбора (builder)" id="id-c4dfb8c004324ae681c2c614ac2448ab">
-          <documentation>Если критерии отбора заданы, то выполняется фильтр.&#xD;
+        <element xsi:type="archimate:ApplicationFunction" name="Применение критериев отбора" id="id-c4dfb8c004324ae681c2c614ac2448ab">
+          <documentation>Если критерии отбора заданы, резолвер выполняет фильтр через GitCliRunner.&#xD;
 Критерий на вход получает рабочую копию, на выходе возвращает true/false и из итогового массива рабочих копий удаляются все, для которых критерий вернул false.</documentation>
         </element>
         <element xsi:type="archimate:ApplicationFunction" name="Применение ручного выбора" id="id-0a81c1e15e0b46f59741b29170c24ff1">
