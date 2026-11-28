@@ -18,7 +18,8 @@ Archi или совместимый инструмент). Резервная к
 | **Switch command flow** | Switch command flow (`id-6715348b0dbf46f9965c3ad3b2a4eabd`): отбор копий и `git switch` через GitCliRunner, без RetryingQueue | [cli/switch/index.md][cli-switch] |
 | **Proxy command** | Proxy command (`id-c77c4b292e884dab9b249807e1e94a3d`): четыре команды, один поток; отбор без критериев; хвост из разбора argv в функцию запуска git; без RetryingQueue | [platform/proxy-command.md][proxy-command] |
 
-Оркестрация фаз listing → enrichment → enumeration — SSOT в
+Оркестрация фаз (ранняя фильтрация → обогащение оставшихся → поздняя
+фильтрация) — [ADR-26112801][adr-early-filter]; SSOT шагов — в
 [scm/index.md][scm-index]. Раскладка hub / listing / enrichment /
 enumeration — [ADR-26102201][adr-hub].
 
@@ -40,6 +41,7 @@ enumeration — [ADR-26102201][adr-hub].
 [scm-archimate]: ../specifications/scm/index.md#archimate-scm-application
 [adr-layout]: ../../ADR/ADR-26110801-go-package-layout.md
 [adr-hub]: ../../ADR/ADR-26102201-scm-selection-hub-extension-specs.md
+[adr-early-filter]: ../../ADR/ADR-26112801-scm-filter-before-enrich.md
 [cli-sync]: ../specifications/cli/sync/index.md
 [cli-merge]: ../specifications/cli/merge/index.md
 [cli-switch]: ../specifications/cli/switch/index.md
